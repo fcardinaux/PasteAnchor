@@ -81,6 +81,10 @@ Here is a description of the parameters in the PasteAnchor.sublime-settings file
   </tbody>
 </table>
 
+## License
+
+This software is released under the GNU General Public License (GPL) version 3.
+
 ## Todo
 
 * Encode the URLs and the anchor texts.
