@@ -1,9 +1,9 @@
-# Paste Anchor (Sublime Text plugin) - Readme
+# The “Paste Anchor” Plugin
+
+## for Sublime Text
 
 * Author: François Cardinaux, CH 1207 Genève
 * Creation date: 2013-06-14, last updated on 2013-06-16
-
-Copyright: François Cardinaux 2013
 
 ## Description
 
@@ -85,6 +85,4 @@ Here is a description of the parameters in the PasteAnchor.sublime-settings file
 
 This software is released under the GNU General Public License (GPL) version 3.
 
-## Todo
-
-* Encode the URLs and the anchor texts.
+Copyright: François Cardinaux &copy; 2013
