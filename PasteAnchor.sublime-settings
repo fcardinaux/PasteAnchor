@@ -1,5 +1,15 @@
 {
     "paste-anchor": {
+        "extensions": {
+            ".md": "markdown",
+            ".markdown": "markdown",
+            ".html": "html",
+            ".php": "html"
+        },
+        "anchor-syntaxes": {
+            "html": "<a href=\"{0}\">{1}</a>"
+          , "markdown": "[{1}]({0})"
+        },
         "hn-like-site-syntax": "{0} via {1}",
         "hn-like-sites": [
             {"regexp": "^https?://news\\.ycombinator\\.com/item\\?id=[0-9]+$", "title-anchor": "body td.title > a", "via-title": "Hacker News"}

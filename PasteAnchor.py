@@ -2,61 +2,63 @@
 #
 # Author: Francois Cardinaux
 # Date: 2013-06-14
-import sublime, sublime_plugin, urllib, re
+import sublime, sublime_plugin, urllib, re, os.path
 from bs4 import BeautifulSoup
-
-pmu_settings = sublime.load_settings("PasteAnchor.sublime-settings")
 
 class Paste_anchorCommand(sublime_plugin.TextCommand):
   def run(self, edit):
-    config = pmu_settings.get("paste-anchor")
-
     selectedRegion = self.view.sel()[0]
-    # Note that to get the cursor position:
-    cursorPos = selectedRegion.begin()
-
     assumedUrl = sublime.get_clipboard().strip()
+
+    anchor = assumedUrl
+
     try:
-      soup = self.serveTheSoup(assumedUrl)
+      settings = sublime.load_settings("PasteAnchor.sublime-settings")
+      config = settings.get("paste-anchor")
 
-      # Build the Markdown URL
-      title = soup.title.string.strip()
-      mdurl = self.makeUrl(title, assumedUrl)
+      fileName, fileExtension = os.path.splitext( self.view.file_name() )
+      if fileExtension in config["extensions"]:
+        anchorType = config["extensions"][fileExtension]
+        anchorSyntax = config["anchor-syntaxes"][anchorType]
 
-      # Find out if HN-like site
-      isFound = False
-      extUrlREComp = re.compile('^https?://')
-      for site in config["hn-like-sites"]:
+        soup = self.serveTheSoup(assumedUrl)
 
-        if None == re.match(site["regexp"], assumedUrl):
-          continue
+        # Build the Markdown URL
+        title = soup.title.string.strip()
 
-        mainUrl = soup.select(site['title-anchor'])[0]['href'].strip()
-        if None == extUrlREComp.match(mainUrl):
-          # A local link
-          self.view.replace(edit, selectedRegion, mdurl)
+        # Find out if HN-like site
+        isHNLike = False
+        extUrlREComp = re.compile('^https?://')
+        for site in config["hn-like-sites"]:
 
-        else:
-          # An external link
-          mainSoup = self.serveTheSoup(mainUrl)
-          title = mainSoup.title.string.strip()
+          if None == re.match(site["regexp"], assumedUrl):
+            continue
 
-          target = self.makeUrl(title, mainUrl)
-          source = '[' + site['via-title'] + '](' + assumedUrl + ')'
-          fullLink = config["hn-like-site-syntax"].format(target, source)
-          self.view.replace(edit, selectedRegion, fullLink)
+          mainUrl = soup.select(site['title-anchor'])[0]['href'].strip()
+          if None == extUrlREComp.match(mainUrl):
+            # A local link
+            anchor = anchorSyntax.format(assumedUrl, title)
 
-        isFound = True
-        break
+          else:
+            # An external link
+            mainSoup = self.serveTheSoup(mainUrl)
+            title = mainSoup.title.string.strip()
 
-      if not isFound:
-        self.view.replace(edit, selectedRegion, mdurl)
+            target = anchorSyntax.format(mainUrl, title)
+            source = anchorSyntax.format(assumedUrl, site['via-title'])
+            fullLink = config["hn-like-site-syntax"].format(target, source)
+            anchor = fullLink
+
+          isHNLike = True
+          break
+
+        if not isHNLike:
+          anchor = anchorSyntax.format(assumedUrl, title)
     except Exception, excp:
-      print str(excp)
-      self.view.replace(edit, selectedRegion, assumedUrl)
+      # print str(excp)
+      anchor = assumedUrl
 
-  def makeUrl(self, title, url):
-    return ''.join(["[", title, "](", url, ")"])
+    self.view.replace(edit, selectedRegion, anchor)
 
   def serveTheSoup(self, url):
       doc = urllib.urlopen(url)
