@@ -1,4 +1,4 @@
-# Paste Anchor - Readme
+# Paste Anchor (Sublime Text plugin) - Readme
 
 * Author: François Cardinaux, CH 1207 Genève
 * Creation date: 2013-06-14, last updated on 2013-06-16
@@ -7,7 +7,7 @@ Copyright: François Cardinaux 2013
 
 ## Description
 
-This plugin allows you to get an anchor when you paste an URL to a Markdown or HTML file.
+This [Sublime Text](http://www.sublimetext.com/) plugin allows you to get an anchor when you paste an URL to a Markdown or HTML file.
 
 For instance, if you paste the link "http://www.sublimetext.com/docs/2/api_reference.html" to a Markdown file, you get this:
 
