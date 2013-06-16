@@ -35,10 +35,10 @@ class Paste_anchorCommand(sublime_plugin.TextCommand):
         re_comp_externalURL = re.compile('^https?://')
         for site in config["hn-like-sites"]:
 
-          if None == re.match(site["regexp"], assumedUrl):
+          if None == re.match(site["url-regexp"], assumedUrl):
             continue
 
-          mainUrl = soup.select(site['title-anchor'])[0]['href'].strip()
+          mainUrl = soup.select(site['title-anchor-selector'])[0]['href'].strip()
           if None == re_comp_externalURL.match(mainUrl):
             # A local link
             anchor = anchorSyntax.format(assumedUrl, title)

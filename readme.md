@@ -72,8 +72,8 @@ Here is a description of the parameters in the PasteAnchor.sublime-settings file
       <td style="border: 1px solid black;">hn-like-sites</td>
       <td style="border: 1px solid black;">A list of Hacker-News-like sites, with the following settings:
         <ul>
-          <li><b>regexp</b>: the regular expression to use in order to detect the Hacker-News-like site</li>
-          <li><b>title-anchor</b>: the css selector to use in order to locate the anchor of the page title</li>
+          <li><b>url-regexp</b>: the regular expression to use in order to detect the Hacker-News-like site</li>
+          <li><b>title-anchor-selector</b>: the css selector to use in order to locate the anchor of the page title</li>
           <li><b>site-name</b>: the name of the Hacker-News-like site</li>
         </ul>
       </td>
