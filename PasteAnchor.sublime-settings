@@ -12,14 +12,14 @@
         },
         "hn-like-site-syntax": "{0} via {1}",
         "hn-like-sites": [
-            {"regexp": "^https?://news\\.ycombinator\\.com/item\\?id=[0-9]+$", "title-anchor": "body td.title > a", "via-title": "Hacker News"}
-          , {"regexp": "^https?://(www\\.)?lobste\\.rs/", "title-anchor": "body span.link > a", "via-title": "Lobste.rs"}
-          , {"regexp": "^https?://(www\\.)?echojs\\.com/news/", "title-anchor": "body article > h2 > a", "via-title": "EchoJS.com"}
-          , {"regexp": "^https?://(www\\.)?inbound\\.org/articles/view/", "title-anchor": "div.main a.title", "via-title": "Inbound.org"}
-          , {"regexp": "^https?://(www\\.)?lamernews\\.com/news/", "title-anchor": "body h2 a", "via-title": "Lamer News"}
-          , {"regexp": "^https?://(www\\.)?lusernews\\.com/news/", "title-anchor": "body div.story a.newstitle", "via-title": "Luser News"}
-          , {"regexp": "^https?://(www\\.)?hackful\\.com/posts/", "title-anchor": "body div.body div.text_body > strong > a", "via-title": "Hackful News"}
-          , {"regexp": "^https?://(www\\.)?metafilter\\.com/[0-9]+/", "title-anchor": "body div.copy > a", "via-title": "MetaFilter.com"}
+            {"regexp": "^https?://news\\.ycombinator\\.com/item\\?id=[0-9]+$", "title-anchor": "body td.title > a", "site-name": "Hacker News"}
+          , {"regexp": "^https?://(www\\.)?lobste\\.rs/", "title-anchor": "body span.link > a", "site-name": "Lobste.rs"}
+          , {"regexp": "^https?://(www\\.)?echojs\\.com/news/", "title-anchor": "body article > h2 > a", "site-name": "EchoJS.com"}
+          , {"regexp": "^https?://(www\\.)?inbound\\.org/articles/view/", "title-anchor": "div.main a.title", "site-name": "Inbound.org"}
+          , {"regexp": "^https?://(www\\.)?lamernews\\.com/news/", "title-anchor": "body h2 a", "site-name": "Lamer News"}
+          , {"regexp": "^https?://(www\\.)?lusernews\\.com/news/", "title-anchor": "body div.story a.newstitle", "site-name": "Luser News"}
+          , {"regexp": "^https?://(www\\.)?hackful\\.com/posts/", "title-anchor": "body div.body div.text_body > strong > a", "site-name": "Hackful News"}
+          , {"regexp": "^https?://(www\\.)?metafilter\\.com/[0-9]+/", "title-anchor": "body div.copy > a", "site-name": "MetaFilter.com"}
         ]
     }
 }

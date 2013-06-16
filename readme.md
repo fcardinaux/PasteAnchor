@@ -74,7 +74,7 @@ Here is a description of the parameters in the PasteAnchor.sublime-settings file
         <ul>
           <li><b>regexp</b>: the regular expression to use in order to detect the Hacker-News-like site</li>
           <li><b>title-anchor</b>: the css selector to use in order to locate the anchor of the page title</li>
-          <li><b>via-title</b>: the name to use to represent the Hacker-News-like site</li>
+          <li><b>site-name</b>: the name of the Hacker-News-like site</li>
         </ul>
       </td>
     </tr>

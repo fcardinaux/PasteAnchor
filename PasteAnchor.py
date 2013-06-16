@@ -13,14 +13,18 @@ class Paste_anchorCommand(sublime_plugin.TextCommand):
     anchor = assumedUrl
 
     try:
+      # Read the configuration
       settings = sublime.load_settings("PasteAnchor.sublime-settings")
       config = settings.get("paste-anchor")
 
       fileName, fileExtension = os.path.splitext( self.view.file_name() )
       if fileExtension in config["extensions"]:
+
+        # Determine the anchor syntax from the file type
         anchorType = config["extensions"][fileExtension]
         anchorSyntax = config["anchor-syntaxes"][anchorType]
 
+        # Get the BeautifulSoup object
         soup = self.serveTheSoup(assumedUrl)
 
         # Build the Markdown URL
@@ -28,14 +32,14 @@ class Paste_anchorCommand(sublime_plugin.TextCommand):
 
         # Find out if HN-like site
         isHNLike = False
-        extUrlREComp = re.compile('^https?://')
+        re_comp_externalURL = re.compile('^https?://')
         for site in config["hn-like-sites"]:
 
           if None == re.match(site["regexp"], assumedUrl):
             continue
 
           mainUrl = soup.select(site['title-anchor'])[0]['href'].strip()
-          if None == extUrlREComp.match(mainUrl):
+          if None == re_comp_externalURL.match(mainUrl):
             # A local link
             anchor = anchorSyntax.format(assumedUrl, title)
 
@@ -45,7 +49,7 @@ class Paste_anchorCommand(sublime_plugin.TextCommand):
             title = mainSoup.title.string.strip()
 
             target = anchorSyntax.format(mainUrl, title)
-            source = anchorSyntax.format(assumedUrl, site['via-title'])
+            source = anchorSyntax.format(assumedUrl, site['site-name'])
             fullLink = config["hn-like-site-syntax"].format(target, source)
             anchor = fullLink
 
@@ -54,13 +58,14 @@ class Paste_anchorCommand(sublime_plugin.TextCommand):
 
         if not isHNLike:
           anchor = anchorSyntax.format(assumedUrl, title)
+
     except Exception, excp:
       # print str(excp)
       anchor = assumedUrl
 
     self.view.replace(edit, selectedRegion, anchor)
 
+  # Load the specified URL and return the BeautifulSoup object
   def serveTheSoup(self, url):
       doc = urllib.urlopen(url)
-      # http://stackoverflow.com/a/51550/2403326
       return BeautifulSoup(doc)
