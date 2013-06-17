@@ -7,27 +7,27 @@
 
 ## Description
 
-This [Sublime Text](http://www.sublimetext.com/) plugin allows you to get an anchor when you paste an URL to a Markdown or HTML file.
+This [Sublime Text](http://www.sublimetext.com/) plugin allows you to get an anchor with a text when you paste an URL to a Markdown or HTML file. The text corresponds to the page title.
 
 For instance, if you paste the link "http://www.sublimetext.com/docs/2/api_reference.html" to a Markdown file, you get this:
 
     [API Reference - Sublime Text 2 Documentation](http://www.sublimetext.com/docs/2/api_reference.html)
 
-The text of the anchor is automatically taken from the TITLE tag of the target page.
-
-If you paste it to an HTML file, you get this:
+If you paste the same URL to an HTML file, you get this:
 
     <a href="http://www.sublimetext.com/docs/2/api_reference.html">API Reference - Sublime Text 2 Documentation</a>
 
-### Pasting URLs of Hacker-News-like threads
+### Pasting URLs of Hacker News threads
 
 When you paste a link to a thread on Hacker News or on a similar site, you get two anchors: one to the thread itself, and one to the related article. For instance, if you paste the link "https://news.ycombinator.com/item?id=1834305" to a Markdown file, you get this:
 
     [NewsBlur](http://www.newsblur.com) via [Hacker News](https://news.ycombinator.com/item?id=1834305)
 
-If you paste it to an HTML file, you get this:
+If you paste the same URL to an HTML file, you get this:
 
     <a href="http://www.newsblur.com">NewsBlur</a> via <a href="https://news.ycombinator.com/item?id=1834305">Hacker News</a>
+
+The syntax "anchor 1 via anchor 2" is configured in the [PasteAnchor.sublime-settings](blob/master/PasteAnchor.sublime-settings) file and can be easily modified.
 
 ## Dependency
 
@@ -35,14 +35,14 @@ You need to install the [BeautifulSoup for Sublime Text](https://github.com/ivan
 
 ## How to run the command
 
-To run the command, type this in the Sublime Text Console:
+Copy or cut the URL, and paste it by pressing the following keys:
+
+* ctrl + alt + v on Windows and Linux
+* cmd + alt + v on Mac OSX
+
+You may also run the command from the Sublime Text Console:
 
     view.run_command("paste_anchor")
-
-To use the cmd + alt + v shortcut:
-
-* Go to Preferences > Key Bindings - User
-* Add the following binding: { "keys": ["super+alt+v"], "command": "paste_anchor" }
 
 ## Configuration
 
