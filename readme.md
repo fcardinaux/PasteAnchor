@@ -27,7 +27,7 @@ If you paste the same URL to an HTML file, you get this:
 
     <a href="http://www.newsblur.com">NewsBlur</a> via <a href="https://news.ycombinator.com/item?id=1834305">Hacker News</a>
 
-The syntax "anchor 1 via anchor 2" is configured in the [PasteAnchor.sublime-settings](blob/master/PasteAnchor.sublime-settings) file and can be easily modified.
+The syntax "anchor 1 via anchor 2" is configured in the [PasteAnchor.sublime-settings](PasteAnchor.sublime-settings) file and can be easily modified.
 
 ## Dependency
 
