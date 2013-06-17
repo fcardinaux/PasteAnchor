@@ -1,0 +1,11 @@
+[
+{
+    "id": "edit",
+    "children":
+    [
+        {"id": "clipboard"},
+        {"caption": "Paste anchor", "command": "paste_anchor" },
+        {"caption": "-"}
+    ]
+}
+]

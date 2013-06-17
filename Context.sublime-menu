@@ -1,0 +1,4 @@
+[
+    { "caption": "-", "id": "for_paste_anchor" },
+    { "caption": "Paste anchor", "command": "paste_anchor" }
+]
