@@ -63,6 +63,10 @@ Here is a description of the parameters in the PasteAnchor.sublime-settings file
       <td style="border: 1px solid black;">The syntax of each extension type</td>
     </tr>
     <tr>
+      <td style="border: 1px solid black;">default-title</td>
+      <td style="border: 1px solid black;">This default title is used if the link isn't a valid URL, or if anything else goes wrong.</td>
+    </tr>
+    <tr>
       <td style="border: 1px solid black;">inaccessible-sites</td>
       <td style="border: 1px solid black;">A list of url patterns that are known not to be accessible for Paste Anchor. To each pattern is associated a replacement title:
         <ul>
