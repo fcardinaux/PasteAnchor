@@ -7,7 +7,10 @@
 
 This [Sublime Text](http://www.sublimetext.com/) plugin allows you to get an anchor with a text when you paste an URL to a Markdown or HTML file. The text corresponds to the page title.
 
-For instance, if you paste the link "http://www.sublimetext.com/docs/2/api_reference.html" to a Markdown file, you get this:
+For instance, if you paste the link "http://www.sublimetext.com/docs/2/api_reference.html" to an HTML or Markdown file, you get this link:
+“[API Reference - Sublime Text 2 Documentation](http://www.sublimetext.com/docs/2/api_reference.html)”.
+
+The exact Markdown syntax is:
 
     [API Reference - Sublime Text 2 Documentation](http://www.sublimetext.com/docs/2/api_reference.html)
 
@@ -15,9 +18,12 @@ If you paste the same URL to an HTML file, you get this:
 
     <a href="http://www.sublimetext.com/docs/2/api_reference.html">API Reference - Sublime Text 2 Documentation</a>
 
-### Pasting URLs of Hacker News threads
+### Pasting URLs of [Hacker News](https://news.ycombinator.com/) threads
 
-When you paste a link to a thread on Hacker News or on a similar site, you get two anchors: one to the thread itself, and one to the related article. For instance, if you paste the link "https://news.ycombinator.com/item?id=1834305" to a Markdown file, you get this:
+When you paste a link to a thread on Hacker News or on a similar site, you get two anchors: one to the thread itself, and one to the related article. For instance, if you paste the link "https://news.ycombinator.com/item?id=1834305" to an HTML or Markdown file, you get this link:
+“[NewsBlur](http://www.newsblur.com) via [Hacker News](https://news.ycombinator.com/item?id=1834305)”.
+
+The exact Markdown syntax is:
 
     [NewsBlur](http://www.newsblur.com) via [Hacker News](https://news.ycombinator.com/item?id=1834305)
 
@@ -26,6 +32,16 @@ If you paste the same URL to an HTML file, you get this:
     <a href="http://www.newsblur.com">NewsBlur</a> via <a href="https://news.ycombinator.com/item?id=1834305">Hacker News</a>
 
 The syntax "anchor 1 via anchor 2" is configured in the [PasteAnchor.sublime-settings](PasteAnchor.sublime-settings) file and can be easily modified.
+
+Note that the same system works for the following sites as well:
+
+* [Lobste.rs](https://lobste.rs)
+* [EchoJS.com](http://www.echojs.com)
+* [Inbound.org](http://www.inbound.org)
+* [LamerNews.com](http://www.lamernews.com)
+* [LuserNews.com](http://www.lusernews.com)
+* [Hackful.com](http://hackful.com)
+* [MetaFilter.com](http://www.metafilter.com)
 
 ## Dependency
 
