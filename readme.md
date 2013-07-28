@@ -20,16 +20,16 @@ If you paste the same URL to an HTML file, you get this:
 
 ### Pasting URLs of [Hacker News](https://news.ycombinator.com/) threads
 
-When you paste a link to a thread on Hacker News or on a similar site, you get two anchors: one to the thread itself, and one to the related article. For instance, if you paste the link "https://news.ycombinator.com/item?id=1834305" to an HTML or Markdown file, you get this link:
-“[NewsBlur](http://www.newsblur.com) via [Hacker News](https://news.ycombinator.com/item?id=1834305)”.
+When you paste a link to a thread on Hacker News or on a similar site, you get two anchors: one to the thread itself, and one to the related article. For instance, if you paste the link "https://news.ycombinator.com/item?id=4161610" to an HTML or Markdown file, you get this link:
+“[Sublime Blog » Sublime Text 2.0 Released](http://www.sublimetext.com/blog/articles/sublime-text-2-0-released) via [Hacker News](https://news.ycombinator.com/item?id=4161610)”.
 
 The exact Markdown syntax is:
 
-    [NewsBlur](http://www.newsblur.com) via [Hacker News](https://news.ycombinator.com/item?id=1834305)
+    [Sublime Blog » Sublime Text 2.0 Released](http://www.sublimetext.com/blog/articles/sublime-text-2-0-released) via [Hacker News](https://news.ycombinator.com/item?id=4161610)
 
 If you paste the same URL to an HTML file, you get this:
 
-    <a href="http://www.newsblur.com">NewsBlur</a> via <a href="https://news.ycombinator.com/item?id=1834305">Hacker News</a>
+    <a href="http://www.sublimetext.com/blog/articles/sublime-text-2-0-released">Sublime Blog » Sublime Text 2.0 Released</a> via <a href="https://news.ycombinator.com/item?id=4161610">Hacker News</a>
 
 The syntax "anchor 1 via anchor 2" is configured in the [PasteAnchor.sublime-settings](PasteAnchor.sublime-settings) file and can be easily modified.
 
