@@ -10,11 +10,11 @@ This [Sublime Text](http://www.sublimetext.com/) plugin allows you to get an anc
 For instance, if you paste the link "http://www.sublimetext.com/docs/2/api_reference.html" to an HTML or Markdown file, you get this link:
 “[API Reference - Sublime Text 2 Documentation](http://www.sublimetext.com/docs/2/api_reference.html)”.
 
-The exact Markdown syntax is:
+Here is the exact syntax you get in a Markdown file:
 
     [API Reference - Sublime Text 2 Documentation](http://www.sublimetext.com/docs/2/api_reference.html)
 
-If you paste the same URL to an HTML file, you get this:
+Here is the exact syntax you get in an HTML file:
 
     <a href="http://www.sublimetext.com/docs/2/api_reference.html">API Reference - Sublime Text 2 Documentation</a>
 
@@ -23,11 +23,11 @@ If you paste the same URL to an HTML file, you get this:
 When you paste a link to a thread on Hacker News or on a similar site, you get two anchors: one to the thread itself, and one to the related article. For instance, if you paste the link "https://news.ycombinator.com/item?id=4161610" to an HTML or Markdown file, you get this link:
 “[Sublime Blog » Sublime Text 2.0 Released](http://www.sublimetext.com/blog/articles/sublime-text-2-0-released) via [Hacker News](https://news.ycombinator.com/item?id=4161610)”.
 
-The exact Markdown syntax is:
+Here is the exact syntax you get in a Markdown file:
 
     [Sublime Blog » Sublime Text 2.0 Released](http://www.sublimetext.com/blog/articles/sublime-text-2-0-released) via [Hacker News](https://news.ycombinator.com/item?id=4161610)
 
-If you paste the same URL to an HTML file, you get this:
+Here is the exact syntax you get in an HTML file:
 
     <a href="http://www.sublimetext.com/blog/articles/sublime-text-2-0-released">Sublime Blog » Sublime Text 2.0 Released</a> via <a href="https://news.ycombinator.com/item?id=4161610">Hacker News</a>
 
