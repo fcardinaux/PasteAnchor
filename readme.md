@@ -43,6 +43,31 @@ Note that the same system works for the following sites as well:
 * [Hackful.com](http://hackful.com)
 * [MetaFilter.com](http://www.metafilter.com)
 
+## Installation
+
+Go to your _Sublime Text_ package directory and clone [the present repository](https://github.com/fcardinaux/PasteAnchor).
+
+### Linux (untested, copied from [joneshf/sublime-chaplinjs](https://github.com/joneshf/sublime-chaplinjs/blob/master/README.md))
+
+```
+$ cd ~/.config/sublime-text-2/Packages
+$ git clone https://github.com/fcardinaux/PasteAnchor
+```
+
+### Macosx
+
+```
+$ cd "~/Library/Application Support/Sublime Text 2/Packages"
+$ git clone https://github.com/fcardinaux/PasteAnchor
+```
+
+### Windows (untested, copied from [joneshf/sublime-chaplinjs](https://github.com/joneshf/sublime-chaplinjs/blob/master/README.md))
+
+```
+$ cd "%APPDATA%\Sublime Text 2"
+$ git clone https://github.com/fcardinaux/PasteAnchor
+```
+
 ## Dependency
 
 You need to install the [BeautifulSoup for Sublime Text](https://github.com/ivanchaer/beautiful-soup-sublime) plugin.
