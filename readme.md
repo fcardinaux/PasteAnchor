@@ -1,9 +1,7 @@
-# The “Paste Anchor” Plugin
-
-## for Sublime Text
+# The _Paste Anchor_ Plugin for Sublime Text 2
 
 * Author: François Cardinaux, CH 1207 Genève
-* Creation date: 2013-06-14, last updated on 2013-06-16
+* Creation date: 2013-06-14, last updated on 2013-07-28
 
 ## Description
 
@@ -63,6 +61,15 @@ Here is a description of the parameters in the PasteAnchor.sublime-settings file
     <tr>
       <td style="border: 1px solid black;">anchor-syntaxes</td>
       <td style="border: 1px solid black;">The syntax of each extension type</td>
+    </tr>
+    <tr>
+      <td style="border: 1px solid black;">inaccessible-sites</td>
+      <td style="border: 1px solid black;">A list of url patterns that are known not to be accessible for Paste Anchor. To each pattern is associated a replacement title:
+        <ul>
+          <li><b>url-regexp</b>: the regular expression to use in order to identify the inaccessible site</li>
+          <li><b>title</b>: the text to put in the anchor</li>
+        </ul>
+      </td>
     </tr>
     <tr>
       <td style="border: 1px solid black;white-space: nowrap;">hn-like-site-syntax</td>
