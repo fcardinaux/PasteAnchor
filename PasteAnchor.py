@@ -1,7 +1,7 @@
 # Sublime Text 2 - Paste Anchor
 #
 # Author: Francois Cardinaux
-# Date: 2013-06-14
+# Date: 2013-06-14 - 2013-07-28
 import sublime, sublime_plugin, urllib, re, os.path
 
 class Paste_anchorCommand(sublime_plugin.TextCommand):
@@ -19,17 +19,18 @@ class Paste_anchorCommand(sublime_plugin.TextCommand):
       else:
         self.BeautifulSoup = BeautifulSoup
 
-    print "running command now..."
+    print "Running PasteAnchor command now..."
     selectedRegion = self.view.sel()[0]
     assumedUrl = sublime.get_clipboard().strip()
 
-    anchor = assumedUrl
+    # Read the configuration
+    settings = sublime.load_settings("PasteAnchor.sublime-settings")
+    config = settings.get("paste-anchor")
+
+    defaultAnchor = assumedUrl
+    anchor = defaultAnchor
 
     try:
-      # Read the configuration
-      settings = sublime.load_settings("PasteAnchor.sublime-settings")
-      config = settings.get("paste-anchor")
-
       fileName, fileExtension = os.path.splitext( self.view.file_name() )
       if fileExtension in config["extensions"]:
 
@@ -37,52 +38,48 @@ class Paste_anchorCommand(sublime_plugin.TextCommand):
         anchorType = config["extensions"][fileExtension]
         anchorSyntax = config["anchor-syntaxes"][anchorType]
 
-        # Get the BeautifulSoup object
-        soup = self.serveTheSoup(assumedUrl)
+        defaultAnchor = anchorSyntax.format(assumedUrl, config["default-title"])
+        anchor = defaultAnchor
 
-        if not soup:
+        # Find out if accessible
+        inaccessibleSiteTitle = False
+        re_comp_externalURL = re.compile('^https?://')
+        for site in config["inaccessible-sites"]:
 
-          anchor = "You should install the BeautifulSoup package"
+          if None == re.match(site["url-regexp"], assumedUrl):
+            continue
+
+          inaccessibleSiteTitle = site["title"]
+          break
+
+        if inaccessibleSiteTitle:
+
+          anchor = anchorSyntax.format(assumedUrl, inaccessibleSiteTitle)
 
         else:
 
-          # Build the Markdown URL
-          title = soup.title.string.strip()
-
-          # Find out if HN-like site
-          isHNLike = False
-          re_comp_externalURL = re.compile('^https?://')
-          for site in config["hn-like-sites"]:
-
-            if None == re.match(site["url-regexp"], assumedUrl):
-              continue
-
-            mainUrl = soup.select(site['title-anchor-selector'])[0]['href'].strip()
-            if None == re_comp_externalURL.match(mainUrl):
-              # A local link
-              anchor = anchorSyntax.format(assumedUrl, title)
-
-            else:
-              # An external link
-              mainSoup = self.serveTheSoup(mainUrl)
-              title = mainSoup.title.string.strip()
-
-              target = anchorSyntax.format(mainUrl, title)
-              source = anchorSyntax.format(assumedUrl, site['site-name'])
-              fullLink = config["hn-like-site-syntax"].format(target, source)
-              anchor = fullLink
-
-            isHNLike = True
-            break
-
-          if not isHNLike:
-            anchor = anchorSyntax.format(assumedUrl, title)
+          anchor = self.buildAnchorFromWebExploration(assumedUrl, config, anchorSyntax, defaultAnchor)
 
     except Exception, excp:
       print str(excp)
-      anchor = assumedUrl
+      anchor = defaultAnchor
 
     self.view.replace(edit, selectedRegion, anchor)
+
+    # Position the cursor at the end of the new anchor
+    newSelectedRegion = self.view.sel()[0]
+    self.view.sel().clear()
+    self.view.sel().add(sublime.Region(newSelectedRegion.b))
+
+    # Scroll the page to the cursor (maybe useless, but it doesn't hurt)
+    self.view.show(newSelectedRegion.b)
+
+  def on_done(self, text):
+    print "Le texte est..."
+    print text
+
+  def defaultUrl(self, url):
+    return
 
   # Load the specified URL and return the BeautifulSoup object
   def serveTheSoup(self, url):
@@ -91,3 +88,50 @@ class Paste_anchorCommand(sublime_plugin.TextCommand):
 
     doc = urllib.urlopen(url)
     return self.BeautifulSoup(doc)
+
+  def buildAnchorFromWebExploration(self, url, config, anchorSyntax, defaultAnchor):
+
+    anchor = defaultAnchor
+
+    # Get the BeautifulSoup object
+    soup = self.serveTheSoup(url)
+
+    if not soup:
+
+      anchor = "You should install the BeautifulSoup package"
+
+    else:
+
+      # Build the Markdown URL
+      title = soup.title.string.strip()
+
+      # Find out if HN-like site
+      isHNLike = False
+      re_comp_externalURL = re.compile('^https?://')
+      for site in config["hn-like-sites"]:
+
+        if None == re.match(site["url-regexp"], url):
+          continue
+
+        mainUrl = soup.select(site['title-anchor-selector'])[0]['href'].strip()
+        if None == re_comp_externalURL.match(mainUrl):
+          # A local link
+          anchor = anchorSyntax.format(url, title)
+
+        else:
+          # An external link
+          mainSoup = self.serveTheSoup(mainUrl)
+          title = mainSoup.title.string.strip()
+
+          target = anchorSyntax.format(mainUrl, title)
+          source = anchorSyntax.format(url, site['site-name'])
+          fullLink = config["hn-like-site-syntax"].format(target, source)
+          anchor = fullLink
+
+        isHNLike = True
+        break
+
+      if not isHNLike:
+        anchor = anchorSyntax.format(url, title)
+
+    return anchor
